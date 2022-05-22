@@ -1,6 +1,7 @@
 package com.gridnine.testing;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,8 +12,10 @@ public class FlightAlreadySent implements Filter{
     @Override
     public List<Flight> filter(List<Flight> flightList) {
         System.out.println("Рейсы, которые уже вылетели: ");
-        return flightList.stream()
-                .filter(flight -> flight.getSegments().get(0).getDepartureDate().isBefore(LocalDateTime.now()))
-                .toList();
+        List<Flight> result = new ArrayList<>();
+        flightList.forEach(flight -> flight.getSegments()
+                .stream().filter(segment -> segment.getDepartureDate().isBefore(LocalDateTime.now()))
+                .forEach(s -> result.add(flight)));
+        return result;
     }
 }

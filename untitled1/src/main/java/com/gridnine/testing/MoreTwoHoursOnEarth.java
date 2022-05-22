@@ -1,6 +1,7 @@
 package com.gridnine.testing;
 
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 /**
@@ -12,7 +13,7 @@ public class MoreTwoHoursOnEarth  implements Filter{
 
     public List<Flight> filter(List<Flight> flightLists) {
         System.out.println("Общее время, проведённое на земле превышает два часа");
-        List<Flight> result = new LinkedList<>();
+        List<Flight> result = new ArrayList<>();
         flightLists.forEach(flight -> {
             int size = flight.getSegments().size();
             if (size > 1){
